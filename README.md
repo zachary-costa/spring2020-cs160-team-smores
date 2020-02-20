@@ -1,7 +1,7 @@
 # spring2020-cs160-team-smores
 
 <h1>FoodButler</h1>
-<h2>Grocery Stock Management App</h2>
+<p>Grocery Stock Management App</p>
 
 <h2>Authors</h2>
 <ul>
