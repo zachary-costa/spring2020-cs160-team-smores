@@ -5,7 +5,8 @@
 
 <h2>Description</h2>
 <p>
-The FoodButler is a grocery list organizer available on all devices for households and grocery shoppers Who are looking for better tools to organize and manage their household’s grocery stock that checks, replenishes, and shares your food stock in an easy and customizable way.
+The FoodButler is a grocery list organizer available on Web browsers and smartphones (Android, Apple).
+This application is for households and grocery shoppers Who are looking for better tools to organize and manage their household’s grocery stock that checks, replenishes, and shares your food stock in an easy and customizable way.
 </p>
 
 <h2>Features</h2>
