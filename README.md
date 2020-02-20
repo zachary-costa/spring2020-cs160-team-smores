@@ -9,10 +9,9 @@ The FoodButler is a grocery list organizer available on all devices for househol
 </p>
 
 <h2>Features</h2>
+<ul>
   <li>Checks food inside pantries, refridgerators, and other storage places.</li>
   <li>Share shopping lists and grocery stock with friends and families.</li>
-<ul>
-  
 </ul>
 
 <h2>Authors</h2>
