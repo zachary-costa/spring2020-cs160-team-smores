@@ -3,6 +3,7 @@
 <h1>FoodButler</h1>
 <h2>Grocery Stock Management App</h2>
 
+<h2>Authors</h2>
 <ul>
   <li>Alvin Nguyen</li>
   <li>Zachary Costa</li>
