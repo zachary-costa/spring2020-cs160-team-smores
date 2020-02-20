@@ -4,9 +4,9 @@
 <p>Grocery Stock Management App</p>
 
 <h2>Authors</h2>
-<ol>
+<ul>
   <li>Alvin Nguyen</li>
   <li>Zachary Costa</li>
   <li>Micheal Chu</li>
   <li>Gricelda Tecun</li>
-</ol>
+</ul>
