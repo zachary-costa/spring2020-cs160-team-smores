@@ -14,7 +14,7 @@ body {
 <h1>FoodButler</h1>
 <p> <span id="welcome"></span></p>
 <form action="signout.php">
-    <button type="submit" id="button" name="button">Sign-out<br></button>
+    <button type="submit" id="button" name="button" action="signout.php">Sign-out<br></button>
 </form>
 
 <script>
@@ -22,8 +22,7 @@ body {
 function welcome() {
 	var request = new XMLHttpRequest();
 	request.onload = function() {
-		console.log(this.responseText);
-		document.getElementById("welcome").innerHTML = this.responseText;
+		document.getElementById("welcome").innerHTML = "Welcome " + this.responseText + "!";
 	}
 	request.open("GET", "userinfo.php", true);
     request.send();

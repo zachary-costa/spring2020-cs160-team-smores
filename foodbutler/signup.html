@@ -20,39 +20,25 @@ body {
     </ul>
 </nav>
 
-<form onsubmit="validatesignup()" method="get" action="validatesignup.php">
+<form method="post" action="validatesignup.php">
     <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" onblur="usernamecheck()"><br>
-	<p><span id ="userres"></span></p>
+    <input type="text" id="username" name="username" onblur="usernamecheck()" required><br><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
+    <input type="password" id="password" name="password" onblur="passwordcheck()" required><br><br>
 	<label for="password2">Resubmit your Password:</label><br>
-    <input type="password" id="password2" name="password2" onblur="passwordcheck()"><br>
-    <p> <span id="passres"></span></p>
+    <input type="password" id="password2" name="password2" onblur="passwordcheck()" required><br><br>    
     <button type="submit" id="button" name="button" disabled>Sign-up<br></button>
+	<p> <span id="userres"></span></p>	
+	<p> <span id="passres"></span></p>
 </form>
 
 <script type = "text/javascript">
-function validatesignup() {
-	var request = new XMLHttpRequest();
-	var username = document.getElementById("username").value;
-	var password = document.getElementById("password").value;
-	request.open("GET", "validatesignup.php?username=" + username + "password" + password);
-	request.onreadystatechange = function() {
-        if(this.readyState === 4 && this.status === 200) {
-			if(this.response == true){
-				document.location.href = "home.html";			
-			} 
-        }
-    };
-    request.send();
-}
 
 
 function usernamecheck() {
 	var request = new XMLHttpRequest();
 	var username = document.getElementById("username").value;
-	request.open("GET", "usernamecheck.php?username=" + username);
+	request.open("POST", "usernamecheck.php?username=" + username);
 	request.onreadystatechange = function() {
         if(this.readyState === 4 && this.status === 200) {
 			var response = this.responseText;

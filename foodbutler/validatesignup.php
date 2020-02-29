@@ -1,15 +1,11 @@
 <?php
-	$username = htmlentities($_GET["username"]);
-	$password = htmlentities($_GET["password"]);
-
 	session_start();
+	if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+		$username = htmlentities($_POST["username"]);
+		$password = htmlentities($_POST["password"]);
+		$_SESSION["username"] = $username;
+		$_SESSION["password"] = $password;
+	}
 
-
-	$_SESSION["user"] = $username;
-	header("Location:home.html");
-
- 
-
-
-
+	header("Location: home.html");
 ?>

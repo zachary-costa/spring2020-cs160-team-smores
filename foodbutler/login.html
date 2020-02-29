@@ -20,11 +20,11 @@ body {
     </ul>
 </nav>
 
-<form onsubmit="return loginValidate()" method="get" action="home.html">
+<form method="post" action="validatelogin.php">
     <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" id="username" name="username" required><br><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
+    <input type="password" id="password" name="password" required><br>
 	<p></p>
     <button type="submit" id="button" name="button">Log-in<br></button>
 </form>
@@ -34,18 +34,17 @@ function loginValidate() {
     var request = new XMLHttpRequest();
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
-	request.open("GET", "validiatelogin.php?username=" + username + "password" + password);
+	request.open("post", "validiatelogin.php?username=" + username + "password" + password);
     request.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-		if(response == "") {
-			return true;
-		} else {
-			return false;
+    	if (this.readyState == 4 && this.status == 200) {
+			if (response == "") {
+				return true;
+			} else {
+				return false;
+			}
 		}
-      }
-    };
+    }
     request.send();
-  }
 }
 </script>
 
