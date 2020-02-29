@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+body {
+  background-color: white;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<h1>FoodButler</h1>
+
+<nav>
+	<ul>
+    	<li><a href="login.html">Log-in</a></li>
+        <li><a href="signup.html">Sign-up</a></li>
+    </ul>
+</nav>
+
+<form onsubmit="return loginValidate()" method="get" action="home.html">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+	<p></p>
+    <button type="submit" id="button" name="button">Log-in<br></button>
+</form>
+<script>
+
+function loginValidate() {
+    var request = new XMLHttpRequest();
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	request.open("GET", "validiatelogin.php?username=" + username + "password" + password);
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+		if(response == "") {
+			return true;
+		} else {
+			return false;
+		}
+      }
+    };
+    request.send();
+  }
+}
+</script>
+
+</body>
+</html>
+

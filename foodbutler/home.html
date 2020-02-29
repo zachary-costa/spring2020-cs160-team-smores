@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<style>
+body {
+  background-color: white;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<h1>FoodButler</h1>
+<p> <span id="welcome"></span></p>
+<form action="signout.php">
+    <button type="submit" id="button" name="button">Sign-out<br></button>
+</form>
+
+<script>
+
+function welcome() {
+	var request = new XMLHttpRequest();
+	request.onload = function() {
+		console.log(this.responseText);
+		document.getElementById("welcome").innerHTML = this.responseText;
+	}
+	request.open("GET", "userinfo.php", true);
+    request.send();
+}
+welcome();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+<style>
+body {
+  background-color: white;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<h1>FoodButler</h1>
+
+<nav>
+	<ul>
+    	<li><a href="login.html">Log-in</a></li>
+        <li><a href="signup.html">Sign-up</a></li>
+    </ul>
+</nav>
+
+<form onsubmit="validatesignup()" method="get" action="validatesignup.php">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" onblur="usernamecheck()"><br>
+	<p><span id ="userres"></span></p>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+	<label for="password2">Resubmit your Password:</label><br>
+    <input type="password" id="password2" name="password2" onblur="passwordcheck()"><br>
+    <p> <span id="passres"></span></p>
+    <button type="submit" id="button" name="button" disabled>Sign-up<br></button>
+</form>
+
+<script type = "text/javascript">
+function validatesignup() {
+	var request = new XMLHttpRequest();
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	request.open("GET", "validatesignup.php?username=" + username + "password" + password);
+	request.onreadystatechange = function() {
+        if(this.readyState === 4 && this.status === 200) {
+			if(this.response == true){
+				document.location.href = "home.html";			
+			} 
+        }
+    };
+    request.send();
+}
+
+
+function usernamecheck() {
+	var request = new XMLHttpRequest();
+	var username = document.getElementById("username").value;
+	request.open("GET", "usernamecheck.php?username=" + username);
+	request.onreadystatechange = function() {
+        if(this.readyState === 4 && this.status === 200) {
+			var response = this.responseText;
+			if(response == "") {
+				document.getElementById("button").disabled = false;
+			} else {
+				document.getElementById("button").disabled = true;
+			}
+            document.getElementById("userres").innerHTML = response;
+        }
+    };
+    request.send();
+}
+
+function passwordcheck() {
+	var pass1 = document.getElementById("password").value;
+	var pass2 = document.getElementById("password2").value;
+	var text = "";
+    if (pass1 != pass2) {
+		text = "The resubmitted password does not match"
+		document.getElementById("button").disabled = true;
+	} else {
+		document.getElementById("button").disabled = false;
+	}
+	document.getElementById("passres").innerHTML = text;
+}
+</script>
+
+</body>
+</html>
+
