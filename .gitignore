@@ -1,0 +1,11 @@
+/dist/
+/public/
+/node_modules/
+/yarn.lock
+/yarn-error.log
+*.idea
+*.iml
+*.env
+**.~*
+**.bak
+**.tmp
