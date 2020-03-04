@@ -53,7 +53,6 @@ export default class Database {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, conn) => {
                 if (err) {
-                    conn.release()
                     return reject(err)
                 }
                 resolve(conn)

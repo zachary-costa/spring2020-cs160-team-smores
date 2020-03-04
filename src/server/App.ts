@@ -14,6 +14,14 @@ export default class App {
         })
         // Empty router object
         this.router = Router()
+        // TODO: Move away from init as behavior in router.get unexpected
+        this.router.get('/api/test', async (req, res) => {
+            // TODO: correct conversion to json
+            await this.database.query("SELECT name,age FROM temp").then(result => {
+                console.log(result);
+                return result
+            })
+        })
     }
 
     private static database: Database
