@@ -4,7 +4,14 @@
   "description": "CS 160 Team Smores",
   "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:server": "node $npm_package_main",
+    "clean:dist": "rimraf dist",
+    "clean:public": "rimraf public && yarn copyfiles -u 3 \"src/client/root/*\" \"./src/client/images/*\" \"public/\"",
+    "build:client": "webpack --config src/client/webpack.config.js",
+    "build:server": "tsc -p src/server/tsconfig.json",
+    "watch:client": "nodemon --watch 'src/client/**/*' --ext tsx,html --exec 'npm-run-all clean:public build:client'",
+    "watch:server": "nodemon --watch 'src/server/**/*' --ext ts --exec 'npm-run-all clean:dist build:server start:server'",
+    "start:dev": "npm-run-all --parallel watch:* --print-label"
   },
   "repository": "git+https://github.com/zachary-costa/spring2020-cs160-team-smores.git",
   "bugs": {
@@ -49,6 +56,7 @@
     "@typescript-eslint/parser": "^2.22.0",
     "copyfiles": "^2.2.0",
     "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.3",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",

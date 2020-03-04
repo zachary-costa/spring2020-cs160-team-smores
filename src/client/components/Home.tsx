@@ -4,7 +4,7 @@ export default class Home extends Component {
     public render() {
         return (
             <div className="App">
-                <h1>Project Home</h1>
+                <h1>Home Page</h1>
             </div>
         );
     }
