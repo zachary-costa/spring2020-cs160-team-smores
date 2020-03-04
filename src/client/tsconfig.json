@@ -1,0 +1,13 @@
+{
+  "extends": "../config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../public/",
+    "sourceMap": true,
+    "target": "es5",
+    "allowJs": false,
+    "lib": ["es2019", "dom"],
+    "types": ["react", "react-dom"],
+    "jsx": "react"
+  },
+  "include": ["./**/*.tsx"]
+}
