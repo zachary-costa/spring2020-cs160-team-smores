@@ -21,7 +21,7 @@ who are looking for better tools to organize and manage their household’s groc
 <h2>Requirements</h2>
 <ul>
   <!-- Web requirements for HTML support. -->
-  <li>Web browser that supports the latest HTML+CSS.</li>
+  <li>Web browser that supports JavaScript and HTML with CSS.</li>
 </ul>
 
 <h2>Authors</h2>
