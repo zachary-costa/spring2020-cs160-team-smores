@@ -2,6 +2,7 @@
 import { Router } from 'express'
 // References
 import Database from './Database'
+import Fridge from './fridge/Fridge'
 
 // Wrapper for all endpoints (allows easily adding redis or 3rd party apis)
 export default class App {
@@ -14,16 +15,10 @@ export default class App {
         })
         // Empty router object
         this.router = Router()
-        // TODO: Move away from init as behavior in router.get unexpected
-        this.router.get('/api/test', async (req, res) => {
-            // TODO: correct conversion to json
-            await this.database.query("SELECT name,age FROM temp").then(result => {
-                console.log(result);
-                return result
-            })
-        })
+        this.fridge = new Fridge(this.database, this.router)
     }
 
     private static database: Database
+    private static fridge: Fridge
     public static router: Router
 }

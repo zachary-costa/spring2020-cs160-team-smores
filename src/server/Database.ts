@@ -1,4 +1,4 @@
-import {createPool, Pool, PoolConfig, PoolConnection} from 'mysql'
+import {createPool, Pool, PoolConfig, PoolConnection} from 'mysql' // RowDataPacket?
 
 export default class Database {
     
@@ -33,18 +33,22 @@ export default class Database {
         }
     }
     
-    // Query the database, with optional arguments
-    public async query(sql: string, args?: any[]): Promise<any> {
-        await this.getConnection().then(conn => {
-            return new Promise((resolve, reject) => {
-                conn.query(sql, args, (err, rows) => { // 'rows' may be a result from a COUNT(*)
+    // Select query the database, with optional arguments
+    public async select(sql: string, args?: any[]): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+            this.getConnection().then(conn => {
+                conn.query(sql, args, (err, results) => { // 'rows' may be a result from a COUNT(*)
                     if (err) {
                         conn.release()
                         return reject(err)
                     }
-                    resolve(rows)
+                    resolve(results)
                 })
-            }).finally(conn.release)
+                conn.release()
+            }).catch(error => {
+                console.log(error)
+                reject(error)
+            })
         })
     }
 
