@@ -40,11 +40,13 @@ export default class Database {
                 conn.query(sql, args, (err, results) => { // 'rows' may be a result from a COUNT(*)
                     if (err) {
                         conn.release()
-                        return reject(err)
+                        console.log(err)
+                        reject(err)
                     }
+                    console.log(results)
                     resolve(results)
                 })
-                conn.release()
+                conn.release() // TODO: Fix conn released called twice on conn error
             }).catch(error => {
                 console.log(error)
                 reject(error)

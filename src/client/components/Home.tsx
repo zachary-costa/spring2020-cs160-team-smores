@@ -6,17 +6,17 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
         super(props);
 
         this.state = {
-            test: []
+            storage: []
         }
     }
 
     async componentWillMount() {
-        fetch('/fridge/test')
+        fetch('/storage/test')
             .then(res => {
                 if (!res.ok) throw new Error(res.statusText)
                 return res.json()
             })
-            .then(res => this.setState({test: res}))
+            .then(res => this.setState({storage: res}))
             .catch(err => console.log(err))
     }
     // Render the home page
@@ -26,15 +26,21 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                 <h1>Home Page</h1>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
-                        <th>Age</th>
+                        <th>Setup Date</th>
+                        <th>Low Temp</th>
+                        <th>High Temp</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.test.map(test =>
+                    {this.state.storage.map(storage =>
                         <tr>
-                            <td>{test.name}</td>
-                            <td>{test.age}</td>
+                            <td>{storage.storage_id}</td>
+                            <td>{storage.storage_name}</td>
+                            <td>{storage.setup_date}</td>
+                            <td>{storage.temp_lowest}</td>
+                            <td>{storage.temp_highest}</td>
                         </tr>
                     )}
                 </tbody>
@@ -46,5 +52,6 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
 interface IHomeProps { }
 
 interface IHomeState {
-    test: Array<{name: string, age: number}>
+    // TODO: Fix need for exact name match to db (Reducer)
+    storage: Array<{storage_id: number, storage_name: string, setup_date: string, temp_lowest: number, temp_highest: number}>
 }
