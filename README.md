@@ -42,6 +42,7 @@ CRUD
   <li>Node js</li>
   <li>npm or yarn</li>
   <li>mySQL</li>
+</ul>
 <p>
 Download the project and put the files into a workplace folder.
 Install the dependancies using 'npm install'.
