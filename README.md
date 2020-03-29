@@ -25,7 +25,7 @@ who are looking for better tools to organize and manage their household’s groc
 </ul>
 
 <h2>Updates</h2>
-<h3>03/29<h3>
+<h3>03/29</h3>
 <p>
 Test front-back-db setup for storages. Based on a tutorial.
 Storages can be added to a list and the list is displayed.
