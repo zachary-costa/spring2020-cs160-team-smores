@@ -1,0 +1,12 @@
+/dist/
+/public/
+/node_modules/
+/package-lock.json
+/yarn.lock
+/yarn-error.log
+*.idea
+*.iml
+*.env
+**.~*
+**.bak
+**.tmp
