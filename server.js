@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 require("./server/routes/storageRoutes")(app);
+require("./server/routes/productRoutes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

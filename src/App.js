@@ -7,6 +7,10 @@ import AddStorage from "./components/addStorageComponent";
 import Storage from "./components/storageComponent";
 import StorageList from "./components/storageListComponent";
 
+import AddProduct from "./components/addProductComponent";
+import Product from "./components/productComponent";
+import ProductList from "./components/productListComponent";
+
 class App extends Component {
   render() {
     return (
@@ -17,6 +21,17 @@ class App extends Component {
               FoodButler
             </a>
             <div className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link to={"/product"} className="nav-link">
+                  Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/product/add"} className="nav-link">
+                  Add a new Product
+                </Link>
+              </li>
+
               <li className="nav-item">
                 <Link to={"/storage"} className="nav-link">
                   Storages
@@ -35,6 +50,10 @@ class App extends Component {
               <Route exact path={["/", "/storage"]} component={StorageList}/>
               <Route exact path="/storage/add" component={AddStorage} />
               <Route path="/storage/:id" component={Storage} />
+
+              <Route exact path="/product" component={ProductList}/>
+              <Route exact path="/product/add" component={AddProduct} />
+              <Route path="/product/:id" component={Product} />
             </Switch>
           </div>
         </div>
