@@ -48,10 +48,11 @@ Download the project and put the files into a workplace folder.
 Install the dependancies using 'npm install'.
 At the root of the project, create a .env file with 
   <code>PORT=8081</code> as the content.
-Using a command prompt...
+  Make sure the mySQL server is running and use the init script inside the database folder for first time setup.
+Using a command prompt:
   Start the front-end server with '<code>npm start</code>' or '<code>yarn run</code>' at the root folder.
   Start the back-end server with '<code>node server.js</code>' at the root folder.
-Make sure the mySQL server is running.
+
 </p>
 
 <h2>Authors</h2>
