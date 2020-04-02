@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import StorageService from "../services/storageService";
+import ProductDropDown from "./productDropDownComponent";
+import ProductService from "../services/productService";
 
 export default class AddStorage extends Component {
     constructor(props) {
@@ -13,6 +15,7 @@ export default class AddStorage extends Component {
             id: null,
             title: "",
             description: "",
+            products: [],
             published: false,
             submitted: false
         };
@@ -30,7 +33,16 @@ export default class AddStorage extends Component {
         });
     }
 
+    changeProducts = (data) => {
+        this.setState({
+            products: data
+        }, () => {
+            console.log(this.state);
+        });
+    }
+
     saveStorage() {
+        // TODO: APPEND products data
         var data = {
             title: this.state.title,
             description: this.state.description
@@ -56,6 +68,7 @@ export default class AddStorage extends Component {
             id: null,
             title: "",
             description: "",
+            products: [],
             published: false,
 
             submitted: false
@@ -98,6 +111,11 @@ export default class AddStorage extends Component {
                                 onChange={this.onChangeDescription}
                                 name="description"
                             />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="products">Products</label>
+                            <ProductDropDown changeProducts={this.changeProducts}/>
                         </div>
 
                         <button onClick={this.saveStorage} className="btn btn-success">

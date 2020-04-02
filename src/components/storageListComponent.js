@@ -84,26 +84,6 @@ export default class StorageList extends Component {
         const url = "/storage/";
         return (
             <div className="list row">
-                <div className="col-md-8">
-                    <div className="input-group mb-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search by title"
-                            value={this.state.title}
-                            onChange={this.onChangeSearchTitle}
-                        />
-                        <div className="input-group-append">
-                            <button
-                                className="btn btn-outline-secondary"
-                                type="button"
-                                onClick={this.searchTitle}
-                            >
-                            Search
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 <div className="col-md-6">
                     <h4>Storage List</h4>
 

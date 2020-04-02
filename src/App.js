@@ -11,6 +11,7 @@ import AddProduct from "./components/addProductComponent";
 import Product from "./components/productComponent";
 import ProductList from "./components/productListComponent";
 
+
 class App extends Component {
   render() {
     return (
@@ -54,6 +55,7 @@ class App extends Component {
               <Route exact path="/product" component={ProductList}/>
               <Route exact path="/product/add" component={AddProduct} />
               <Route path="/product/:id" component={Product} />
+
             </Switch>
           </div>
         </div>
