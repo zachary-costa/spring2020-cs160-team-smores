@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import StorageService from "../services/storageService";
 import ProductDropDown from "./productDropDownComponent";
-import ProductService from "../services/productService";
 
 export default class AddStorage extends Component {
     constructor(props) {
@@ -42,17 +41,18 @@ export default class AddStorage extends Component {
     }
 
     saveStorage() {
-        // TODO: APPEND products data
         var data = {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            products: this.state.products
         };
-
+        console.log("Sending data: " + data);
         StorageService.create(data).then(response => {
             this.setState({
                 id: response.data.id,
                 title: response.data.title,
                 description: response.data.description,
+                products: response.data.products,
                 published: response.data.published,
 
                 submitted: true

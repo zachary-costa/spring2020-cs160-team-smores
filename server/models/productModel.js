@@ -92,6 +92,21 @@ Product.remove = (id, result) => {
             return;
         }
 
+        sql.query("DELETE FROM storage_product WHERE product_id = ?", id, (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            }
+    
+            if (res.affectedRows == 0) {
+                result({ kind: "not_found" }, null);
+                return;
+            }
+    
+            console.log("Cleared storage_product product with id: ", id);
+        });
+
         console.log("Deleted product with id: ", id);
         result(null, res);
     });
@@ -104,6 +119,16 @@ Product.removeAll = result => {
             result(null, err);
             return;
         }
+
+        sql.query("DELETE FROM storage_product", (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            }
+            
+            console.log(`Deleted ${res.affectedRows} storages`);
+        });
 
         console.log(`Deleted ${res.affectedRows} products`);
         result(null, res);

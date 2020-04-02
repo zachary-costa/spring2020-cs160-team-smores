@@ -10,7 +10,8 @@ exports.create = (req, res) => {
     const storage = new Storage({
         title: req.body.title,
         description: req.body.description,
-        published: req.body.published
+        products: req.body.products,
+        published: req.body.published,
     });
 
     Storage.create(storage, (err, data) => {
@@ -35,7 +36,20 @@ exports.findAll = (req, res) => {
                     "An error occurred while getting storages"
             });
         } else {
-            res.send(data);
+            Storage.getAllStoragesProducts((err, products) => {
+                if (err) {
+                    res.status(500).send({
+                        message:
+                            err.message ||
+                            "An error occurred while getting storage_products"
+                    });
+                } else {
+                    let productMat = extractSortProducts(products);
+                    console.log(productMat);
+                    data = insertProductMatrix(data, productMat);
+                    res.send(data);
+                }
+            })
         }
     })
 };
@@ -54,10 +68,99 @@ exports.findOne = (req, res) => {
                 });
             }
         } else {
-            res.send(data);
+            Storage.findProductIdsInStorageId(req.params.id, (err, products) => {
+                if (err) {
+                    if (err.kind === "not_found") {
+                        res.status(404).send({
+                            message: `Storage ID: ${req.params.id} was not found
+                                        in storage_product`
+                        })
+                    } else {
+                        res.status(500).send({
+                            message: 
+                                "An error occurred while getting Products of Storage: " 
+                                + req.params.id
+                        });
+                    }
+                } else {
+                    let productArr = extractProducts(products);
+                    data = insertProductArr(data, productArr);
+                    console.log(data);
+                    res.send(data);
+                }
+            });            
         }
     });
 };
+
+function insertProductArr(data, products) {
+    let j = JSON.parse(JSON.stringify(data));
+    let names = Object.keys(j);
+    let vals = Object.values(j);
+    
+    names.push('products');
+    vals.push(products);
+
+    console.log(names);
+    console.log(vals);
+    let obj = {};
+    names.forEach(function(k,i){
+        obj[k] = vals[i];
+    });
+    return obj;
+}
+
+function extractProducts(res) {
+    let arr = [];
+    for (let i = 0; i < res.length; i++) {
+        let j = JSON.parse(JSON.stringify(res[i]));
+        obj = {};
+        obj["id"] = j.product_id;
+        obj["name"] = j.name;
+        obj["size"] = j.size;
+        arr.push(obj);
+    }
+    return arr;
+}
+
+function insertProductMatrix(data, products) {
+    var arr = [];
+    for (let i = 0; i < data.length; i++) {
+        var row = JSON.parse(JSON.stringify(data[i]));
+        var names = Object.keys(row);
+        var vals = Object.values(row);
+
+        names.push('products');
+        vals.push(products[vals[0]]);
+        console.log(names);
+        console.log(vals);
+        var rowObj = {};
+        names.forEach(function(k,v){
+            rowObj[k] = vals[v];
+        });
+
+        arr.push(rowObj);
+
+    }
+    console.log(arr);
+    return arr;
+}
+
+function extractSortProducts(res) {
+    let storages = {};
+    for (let i = 0; i < res.length; i++) {
+        let j = JSON.parse(JSON.stringify(res[i]));
+        if (!(j.storage_id in storages)) {
+            storages[j.storage_id] = [];
+        }
+        obj = {};
+        obj["id"] = j.product_id;
+        obj["name"] = j.name;
+        obj["size"] = j.size;
+        storages[j.storage_id].push(obj);
+    }
+    return storages;
+}
 
 exports.update = (req, res) => {
     if (!req.body) {

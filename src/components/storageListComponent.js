@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import StorageService from "../services/storageService";
+import ProductService from "../services/productService";
 import { Link } from "react-router-dom";
 
 export default class StorageList extends Component {
 
     constructor(props) {
         super(props);
-        this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
         this.retrieveStorages = this.retrieveStorages.bind(this);
+        this.retrieveProducts = this.retrieveProducts.bind(this);
         this.refreshList = this.refreshList.bind(this);
         this.setActiveStorage = this.setActiveStorage.bind(this);
         this.removeAllStorages = this.removeAllStorages.bind(this);
-        this.searchTitle = this.searchTitle.bind(this);
+        this.getProducts = this.getProducts.bind(this);
 
         this.state = {
             storages: [],
+            currentProducts: [],
+            products: [],
             currentStorage: null,
             currentIndex: -1,
             searchTitle: ""
@@ -23,14 +26,7 @@ export default class StorageList extends Component {
 
     componentDidMount() {
         this.retrieveStorages();
-    }
-
-    onChangeSearchTitle(e) {
-        const searchTitle = e.target.value;
-
-        this.setState({
-            searchTitle: searchTitle
-        });
+        this.retrieveProducts();
     }
 
     retrieveStorages() {
@@ -39,6 +35,17 @@ export default class StorageList extends Component {
                 storages: response.data
             });
             console.log(response.data);
+        }).catch(e => {
+            console.log(e);
+        });
+    }
+
+    retrieveProducts() {
+        ProductService.getAll().then(response => {
+            this.setState({
+                products: response.data
+            });
+            //console.log(response.data);
         }).catch(e => {
             console.log(e);
         });
@@ -56,6 +63,8 @@ export default class StorageList extends Component {
         this.setState({
             currentStorage: storage,
             currentIndex: index
+        }, () => {
+            console.log(this.state.currentStorage);
         });
     }
 
@@ -68,15 +77,17 @@ export default class StorageList extends Component {
         });
     }
 
-    searchTitle() {
-        StorageService.findByTitle(this.state.searchTitle).then(response => {
-            this.setState({
-                storages: response.data
+    getProducts(productIds) {
+        let arr = [];
+        productIds.forEach(id => {
+            ProductService.get(id).then(response => {
+                arr.push(response.data);
+                console.log(arr);
+            }).catch(e => {
+                console.log(e);
             });
-            console.log(response.data);
-        }).catch(e => {
-            console.log(e);
         });
+        return arr;
     }
 
     render() {
@@ -136,6 +147,22 @@ export default class StorageList extends Component {
                                 {this.state.currentStorage.published
                                 ? "Published"
                                 : "Pending"}
+                            </div>
+
+                            <div>
+                                <label>
+                                    <strong>Products:</strong>
+                                </label>
+                                {this.state.currentStorage.products &&
+                                this.state.currentStorage.products.map((product, id) => {
+                                    return (
+                                    <div key={id}>
+                                        <label>
+                                            {product.name}
+                                        </label>
+                                    </div>);
+                                })
+                            }
                             </div>
 
                             <Link 
