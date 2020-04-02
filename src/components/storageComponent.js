@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StorageService from "../services/storageService";
+import ProductDropDown from "./productDropDownComponent";
 
 export default class Storage extends Component {
 
@@ -16,6 +17,7 @@ export default class Storage extends Component {
                 id: null,
                 title: "",
                 description: "",
+                products: [],
                 published: false
             },
             message: ""
@@ -66,6 +68,7 @@ export default class Storage extends Component {
             id: this.state.currentStorage.id,
             title: this.state.currentStorage.title,
             description: this.state.currentStorage.description,
+            products: this.state.currentStorage.products,
             published: status
         };
 
@@ -147,6 +150,8 @@ export default class Storage extends Component {
                             ? "Published"
                             : "Pending"}
                         </div>
+
+
                     </form>
 
                     {this.state.currentStorage.published ? (
