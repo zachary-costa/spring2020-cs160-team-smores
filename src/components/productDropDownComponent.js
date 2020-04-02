@@ -4,7 +4,6 @@ import ProductService from "../services/productService";
 class ProductDropDown extends Component {
     constructor(props) {
         super(props);
-        this.setActiveProduct = this.setActiveProduct.bind(this);
         this.onChangeProduct = this.onChangeProduct.bind(this);
 
         this.state = {
@@ -17,10 +16,16 @@ class ProductDropDown extends Component {
     }
 
     componentDidMount() {
+        let id = this.props.currentID;
+        if(id === -1 && this.props.products[0] 
+            && this.props.products[0].id) {
+            id = this.props.products[0].id;
+        }
+        
         this.setState({
             products: this.props.products,
             listID: this.props.listID,
-            currentProductID: this.props.products[0].id
+            currentProductID: id
         }, () => {
             let data = {
                 listID: this.state.listID, 
@@ -41,13 +46,6 @@ class ProductDropDown extends Component {
             };
     
             this.props.changeProduct(data);
-        });
-    }
-
-    setActiveProduct(product, index) {
-        this.setState({
-            currentProduct: product,
-            currentIndex: index
         });
     }
 
@@ -75,9 +73,6 @@ export default class ProductDropDownList extends Component {
         super(props);
         this.addProduct = this.addProduct.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
-        this.saveStorage = this.saveStorage.bind(this);
-
-        this.PRODUCTINDEX = 0;
 
         this.state = {
             listProducts: [],
@@ -94,10 +89,16 @@ export default class ProductDropDownList extends Component {
 
     retrieveProducts() {
         ProductService.getAll().then(response => {
+            let lp = this.props.productid;
+            if(!lp) {
+                lp = [];
+            }
+
             this.setState({
-                products: response.data
+                products: response.data,
+                listProducts: lp
             });
-            //console.log(response.data);
+            console.log(response.data);
         }).catch(e => {
             console.log(e);
         });
@@ -134,27 +135,24 @@ export default class ProductDropDownList extends Component {
         })
     }
 
-    saveStorage() {
-        var data = this.state.listProducts;
-
-        console.log(data);
-    }
-
     render() {
         return (
             <div>
                 {this.state.listProducts &&
-                    this.state.listProducts.map((listProducts, id) => {
-
+                    this.state.listProducts.map((listProduct, id) => {
+                        let listProductId = listProduct.id;
+                        if(!listProduct.id){
+                            listProductId = -1;
+                        }
                         return (<div key={id}>
                                 <ProductDropDown products={this.state.products}
                                     changeProduct={this.onChangeProduct}
+                                    currentID={listProductId}
                                     listID={id}/>
                                 </div>);
                     })
                 }
-                <button onClick={this.addProduct} className="btn btn-info mr-5"
-                    value={this.PRODUCTINDEX}>
+                <button onClick={this.addProduct} className="btn btn-info mr-5">
                     + Add another Product
                 </button>
             </div>

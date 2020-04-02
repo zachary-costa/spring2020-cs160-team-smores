@@ -25,6 +25,11 @@ who are looking for better tools to organize and manage their household’s groc
 </ul>
 
 <h2>Updates</h2>
+<h3>04/02</h3>
+<p>
+Integrated products with storages. They can be added in inital create and can be viewed in the storage list.
+Deleting the products or storages will update the database.
+</p>
 <h3>03/29</h3>
 <p>
 Test front-back-db setup for storages. Based on a tutorial.
@@ -48,6 +53,8 @@ Download the project and put the files into a workplace folder.
 Install the dependancies using 'npm install'.
 At the root of the project, create a .env file with 
   <code>PORT=8081</code> as the content.
+ The mySQL server needs to have a database named <code>testdb</code>, and a user matching the specifications in
+ the dbconfig file. Afterwards, run the init.sql file.
   Make sure the mySQL server is running and use the init script inside the database folder for first time setup.
 Using a command prompt:
   Start the front-end server with '<code>npm start</code>' or '<code>yarn run</code>' at the root folder.

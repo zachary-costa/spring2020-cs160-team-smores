@@ -52,6 +52,19 @@ export default class Storage extends Component {
         }));
     }
 
+    changeProducts = (data) => {
+        this.setState(function(prevState) {
+            return {
+                currentStorage: {
+                    ...prevState.currentStorage,
+                    products: data
+                }
+        }   
+        }, () => {
+            console.log(this.state);
+        });
+    }
+
     getStorage(id) {
         StorageService.get(id).then(response => {
             this.setState({
@@ -151,8 +164,13 @@ export default class Storage extends Component {
                             : "Pending"}
                         </div>
 
-
                     </form>
+
+                    <div className="form-group">
+                            <label htmlFor="products">Products</label>
+                            <ProductDropDown changeProducts={this.changeProducts}
+                            productList={this.state.currentStorage.products}/>
+                    </div>
 
                     {this.state.currentStorage.published ? (
                         <button
