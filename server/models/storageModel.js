@@ -138,9 +138,10 @@ Storage.updateById = (id, storage, result) => {
                 }
                 if(storage.products){
                     storage.products.forEach(element => {
+                        console.log(element);
                         sql.query(`INSERT INTO storage_product(storage_id, product_id) 
                             VALUES(?,?)`, 
-                        [res.insertId, element], 
+                        [res.insertId, element.id], 
                         (err, res) => {
                             if (err) {
                                 console.log("Error: ", err);

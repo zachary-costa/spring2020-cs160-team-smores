@@ -115,7 +115,7 @@ function extractProducts(res) {
     for (let i = 0; i < res.length; i++) {
         let j = JSON.parse(JSON.stringify(res[i]));
         obj = {};
-        obj["id"] = j.product_id;
+        obj["id"] = j.id;
         obj["name"] = j.name;
         obj["size"] = j.size;
         arr.push(obj);
@@ -154,7 +154,7 @@ function extractSortProducts(res) {
             storages[j.storage_id] = [];
         }
         obj = {};
-        obj["id"] = j.product_id;
+        obj["id"] = j.id;
         obj["name"] = j.name;
         obj["size"] = j.size;
         storages[j.storage_id].push(obj);
