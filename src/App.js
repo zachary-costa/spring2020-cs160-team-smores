@@ -11,6 +11,10 @@ import AddProduct from "./components/addProductComponent";
 import Product from "./components/productComponent";
 import ProductList from "./components/productListComponent";
 
+import AddList from "./components/addListComponent";
+import List from "./components/listComponent";
+import GroceryList from "./components/groceryListsComponent";
+
 
 class App extends Component {
   render() {
@@ -43,6 +47,17 @@ class App extends Component {
                   Add a new Storage
                 </Link>
               </li>
+
+              <li className="nav-item">
+                <Link to={"/list"} className="nav-link">
+                  Lists
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/list/add"} className="nav-link">
+                  Add a new List
+                </Link>
+              </li>
             </div>
           </nav>
 
@@ -55,6 +70,10 @@ class App extends Component {
               <Route exact path="/product" component={ProductList}/>
               <Route exact path="/product/add" component={AddProduct} />
               <Route path="/product/:id" component={Product} />
+
+              <Route exact path="/list" component={GroceryList}/>
+              <Route exact path="/list/add" component={AddList} />
+              <Route path="/list/:id" component={List} />
 
             </Switch>
           </div>

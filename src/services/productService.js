@@ -27,9 +27,6 @@ class ProductService {
         return http.delete("/product");
     }
 
-    findByName(name) {
-        return http.get("/product/?name=" + name);
-    }
 }
 
 export default new ProductService();

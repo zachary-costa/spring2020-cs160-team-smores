@@ -2,7 +2,7 @@ import http from "../http-common";
 
 
 class StorageService {
-    // TODO: /storage/ needs to be updated
+    // TODO: /storage/ needs to be updated for logins
     getAll() {
         return http.get("/storage");
     }
@@ -27,9 +27,6 @@ class StorageService {
         return http.delete("/storage");
     }
 
-    findByTitle(title) {
-        return http.get("/storage/?title=" + title);
-    }
 }
 
 export default new StorageService();
