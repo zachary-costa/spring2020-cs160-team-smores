@@ -14,7 +14,7 @@ export default class Login extends Component {
       loading: false,
       error: ''
   };
-
+  this.register = this.register.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
 }
