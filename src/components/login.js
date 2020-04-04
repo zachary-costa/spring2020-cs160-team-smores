@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../login.css";
 import Logo from "../FoodButler.svg";
-
+import UserService from "../services/userService.js";
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,6 +24,31 @@ handleChange(e) {
   this.setState({ [name]: value });
 }
 
+register(e)
+{
+      var data = {
+        name: this.state.username,
+        password: this.state.password
+      };
+
+      UserService.create(data).then(response => {
+        this.setState({
+          id: response.data.id,
+          username: response.data.name,
+          password: response.data.password,
+
+          submitted: true
+        })
+        console.log(response.data);
+      }).catch(e => {
+        console.log(e);
+      });
+    }
+
+      //this.setState({error: "Username already Exists", loading: false})
+
+  //}
+
 handleSubmit(e) {
   e.preventDefault();
 
@@ -36,15 +61,17 @@ handleSubmit(e) {
   }
 
   this.setState({ loading: true });
+
+
 }
 
   render() {
-    const { username, password, submitted, loading, error } = this.state;
+    const { username, password, submitted, loading, register, error } = this.state;
             return (
                 <div className="col-md-6 col-md-offset-3">
                   <img src={Logo} alt="website logo"/>
 
-                    <h2>Login</h2>
+                    <h2>Login or Create an Account</h2>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                             <label htmlFor="username">Username</label>
@@ -61,11 +88,19 @@ handleSubmit(e) {
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary" disabled={loading}>Login</button>
+                            <button className="btn btn-primary" disabled={loading}>
+                              Login
+                            </button>
                             {loading &&
                                 <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                             }
                         </div>
+                        <div className="form-group">
+                            <button onClick={this.register} className="btn btn-primary">
+                              Create an Account
+                            </button>
+                        </div>
+
                         {error &&
                             <div className={'alert alert-danger'}>{error}</div>
                         }
