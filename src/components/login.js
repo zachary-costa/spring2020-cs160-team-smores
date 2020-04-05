@@ -12,7 +12,9 @@ export default class Login extends Component {
       password: '',
       submitted: false,
       loading: false,
-      error: ''
+      error: '',
+      newUser: false,
+      users: []
   };
   this.register = this.register.bind(this);
   this.handleChange = this.handleChange.bind(this);
@@ -25,6 +27,17 @@ handleChange(e) {
 }
 
 register(e)
+{
+  this.setState({ newUser: true });
+  UserService.findByName(this.state.username).then(response => {
+      this.setState({
+          users: response.data
+        });
+        console.log(response.data);
+    }).catch(e => {
+        console.log(e);
+    });
+if (this.state.users == null)
 {
       var data = {
         name: this.state.username,
@@ -44,11 +57,12 @@ register(e)
         console.log(e);
       });
     }
+else {
+    this.setState({error: "Username already Exists"})
+    this.setState({ loading: true });
 
-      //this.setState({error: "Username already Exists", loading: false})
-
-  //}
-
+  }
+}
 handleSubmit(e) {
   e.preventDefault();
 
@@ -61,12 +75,36 @@ handleSubmit(e) {
   }
 
   this.setState({ loading: true });
+  UserService.findByName(this.state.username).then(response => {
+      this.setState({
+          users: response.data
+        });
+        console.log(response.data);
+    }).catch(e => {
+        console.log(e);
+    });
+    if (this.state.newUser == true)
+    {
+      this.setState({ loading: false });
+      this.setState({ newUser: false });
+
+    }
+
+    else if (this.state.users.username == this.state.username && this.state.users.password == this.state.password) {
+      this.setState({ loading: false });
+    }
+    else {
+        this.setState({error: "Incorrect Username or Password"})
+        this.setState({ loading: false });
+
+      }
+
 
 
 }
 
   render() {
-    const { username, password, submitted, loading, register, error } = this.state;
+    const { username, password, submitted, loading, error } = this.state;
             return (
                 <div className="col-md-6 col-md-offset-3">
                   <img src={Logo} alt="website logo"/>
