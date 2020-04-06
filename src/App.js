@@ -10,6 +10,7 @@ import StorageList from "./components/storageListComponent";
 import AddProduct from "./components/addProductComponent";
 import Product from "./components/productComponent";
 import ProductList from "./components/productListComponent";
+import Login from "./components/login";
 
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
       <Router>
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
-            <a href="/storage" className="navbar-brand">
+            <a href="/login" className="navbar-brand">
               FoodButler
             </a>
             <div className="navbar-nav mr-auto">
@@ -48,6 +49,7 @@ class App extends Component {
 
           <div className="container mt-3">
             <Switch>
+              <Route exact path="/login" component={Login} />
               <Route exact path={["/", "/storage"]} component={StorageList}/>
               <Route exact path="/storage/add" component={AddStorage} />
               <Route path="/storage/:id" component={Storage} />
