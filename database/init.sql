@@ -1,3 +1,4 @@
+CREATE DATABASE testdb;
 USE testdb;
 CREATE TABLE IF NOT EXISTS `storages` (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -15,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `storage_product` (
   product_id INT NOT NULL,
   PRIMARY KEY(storage_id, product_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS users (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   password varchar(255) NOT NULL

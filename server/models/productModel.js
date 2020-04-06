@@ -99,11 +99,6 @@ Product.remove = (id, result) => {
                 return;
             }
     
-            if (res.affectedRows == 0) {
-                result({ kind: "not_found" }, null);
-                return;
-            }
-    
             console.log("Cleared storage_product product with id: ", id);
         });
 
