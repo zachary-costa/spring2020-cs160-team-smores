@@ -107,6 +107,21 @@ Product.remove = (id, result) => {
             console.log("Cleared storage_product product with id: ", id);
         });
 
+        sql.query("DELETE FROM list_product WHERE product_id = ?", id, (err, res) => {
+            if (err) {
+                console.log("Error: ", err);
+                result(null, err);
+                return;
+            }
+    
+            if (res.affectedRows == 0) {
+                result({ kind: "not_found" }, null);
+                return;
+            }
+    
+            console.log("Cleared list_product product with id: ", id);
+        });
+
         console.log("Deleted product with id: ", id);
         result(null, res);
     });

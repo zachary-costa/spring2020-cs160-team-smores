@@ -73,7 +73,7 @@ exports.findOne = (req, res) => {
                     if (err.kind === "not_found") {
                         res.status(404).send({
                             message: `List ID: ${req.params.id} was not found
-                                        in storage_product`
+                                        in list_product`
                         })
                     } else {
                         res.status(500).send({
