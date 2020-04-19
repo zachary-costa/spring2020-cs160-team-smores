@@ -62,6 +62,26 @@ Using a command prompt:
 
 </p>
 
+<h2>Automated Testing</h2>
+<p>Requires:</p>
+<ul>
+  <li>Node js</li>
+  <li>npm or yarn</li>
+  <li>mySQL</li>
+  <li>Cypress</li>
+</ul>
+<p>
+  Install Cypress to the project using '<code> npm install cypress --save-dev</code>'
+  Move the test file automated_tests.js to the cypress/integration.
+  Open Cypress after installed using '<code> npx cypress open</code>'
+  The automated_test.js tests: 
+    -the frontend webpage structure of the website
+    -adding products
+    -editing products
+    -adding storages
+    -editing storages
+    -removing storages and products
+</p>
 <h2>Authors</h2>
 <ul>
   <li>Alvin Nguyen</li>
