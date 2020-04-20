@@ -1,9 +1,23 @@
 const sql = require("./db.js");
 
 const Storage = function(storage) {
-    this.title = storage.title;
-    this.description = storage.description;
-    this.products = storage.products;
+    let t = storage.title;
+    let d = storage.description;
+    let ps = storage.products;
+    if (t >= 255) {
+        t = t.substring(0,255);
+    }
+    if (d >= 255) {
+        d = d.substring(0,255);
+    }
+    
+    ps = ps.filter(function(v, i, self) {
+        return i == self.indexOf(v); 
+    }); 
+
+    this.title = t;
+    this.description = d;
+    this.products = ps;
     this.published = storage.published;
 };
 
