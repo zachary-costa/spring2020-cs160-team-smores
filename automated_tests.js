@@ -122,7 +122,7 @@ it('Checks the product list for these added products', () => {
 
         cy.contains('abcdefghijklmnopqrstuvwxyz').click()
         cy.contains('Name: abcdefghijklmnopqrstuvwxyz')
-        cy.contains('Size: -5')
+        cy.contains('Size: 0')
         //Website uses int for size so 4.3 converts to 4.
         cy.contains('12345abc').click()
         cy.contains('Name: 12345abc')

@@ -1,8 +1,21 @@
 const sql = require("./db.js");
 
 const Product = function(product) {
-    this.name = product.name;
-    this.size = product.size;
+    let n = product.name;
+    let s = product.size;
+
+    if (n.length >= 255) {
+        n = n.substring(0, 255);
+    }
+    if (s >= 255) {
+        s = 254;
+    }
+    if (s < 0) {
+        s = 0;
+    }
+
+    this.name = n;
+    this.size = s;
 };
 
 Product.create = (newProduct, result) => {
