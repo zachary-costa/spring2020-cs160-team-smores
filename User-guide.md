@@ -1,94 +1,56 @@
 # spring2020-cs160-team-smores
 
-<h1>FoodButler</h1>
+<h1>FoodButler User Guide</h1>
 <p>Grocery Stock Management App</p>
 
 <!-- Insert screenshot of app here. -->
 
 <h2>Description</h2>
 <p>
-The FoodButler is a grocery list organizer available on Web browsers and smartphones (Android, Apple).
-This application is for households and grocery shoppers,
-who are looking for better tools to organize and manage their household’s grocery stock.
+This document is to help new users of FoodButler to learn how to use some of the basic features in the web application. FoodButler is a web-based application that helps people keep track of their food storages and items.
+
 </p>
 
-<h2>Features</h2>
+<h2>Current Features</h2>
 <ul>
-  <li>Checks food inside pantries, refridgerators, and other storage places.</li>
-  <li>Share shopping lists and grocery stock with friends and families.</li>
+  <li>Adding Products and editing them.</li>
+  <li>Creating storages and editing them.</li>
 </ul>
 
-<h2>Requirements</h2>
-<ul>
-  <!-- Web requirements for HTML support. -->
-  <li>Web browser that supports the latest HTML+CSS.</li>
-</ul>
+<h2>FAQ</h2>
+<h3>Adding Products</h3>
+<p> Products can be added by first navigating to the 'add a new product' page. This can be done through the navigation bar. On that page, the product's name and size can be added. The size refers to the relative dimensions of the product. After a product has been added, another product can be added again by clicking on the 'add another product' button.
+  </p>
 
-<h2>Updates</h2>
-<h3>04/02</h3>
+<h3>Viewing Products</h3>
+<p> Products can be viewed at the product list page. This can be access through the navigation bar. By clicking on a product in the list, it's infomation will appear on the right.
+</p>
+
+<h3>Editing Products</h3>
+<p> Products can be edited by selecting them in the product list. After selecting them, an edit button will appear on the right under the products information. After clicking the 'edit' button, the product's name and size can be edited. Through this page, the product can also be deleted. By deleting a product, it will also remove them from the storages lists it is present in.
+</p>
+
+<h3>Deleting Products</h3>
 <p>
-Integrated products with storages. They can be added in inital create and can be viewed in the storage list.
-Deleting the products or storages will update the database.
+  Products can be indiviually deleted from the edit a product page, or mass deleted with the delete all button in the product list. Note that by deleting the products, they will also disappear from the storages the deleted products are present in.
 </p>
-<h3>03/29</h3>
+
+<h3>Adding Storages</h3>
 <p>
-Test front-back-db setup for storages. Based on a tutorial.
-Storages can be added to a list and the list is displayed.
-Selecting a storage displays it and allows it to be edited.
-Storages can be deleted.
-REST api
-CRUD
+  Storages can be added by navigating to the 'add a new storage' page. On that page, the title, description, and the products in the storage can be added. To add more products in the storage, click on the button to added another product. Products are selected using a dropdown menu based on the products in the overall product list.
 </p>
 
-
-<h2>Installation</h2>
-<p>Requires:</p>
-<ul>
-  <li>Node js</li>
-  <li>npm or yarn</li>
-  <li>mySQL</li>
-</ul>
+<h3> Viewing Storages</h3>
 <p>
-Download the project and put the files into a workplace folder.
-Install the dependancies using 'npm install'.
-At the root of the project, create a .env file with 
-  <code>PORT=8081</code> as the content.
- The mySQL server needs to have a database named <code>testdb</code>, and a user matching the specifications in
- the dbconfig file. Afterwards, run the init.sql file.
-  Make sure the mySQL server is running and use the init script inside the database folder for first time setup.
-Using a command prompt:
-  Start the front-end server with '<code>npm start</code>' or '<code>yarn run</code>' at the root folder.
-  Start the back-end server with '<code>node server.js</code>' at the root folder.
-
-</p>
-
-<h2>Automated Testing</h2>
-<p>Requires:</p>
-<ul>
-  <li>Node js</li>
-  <li>npm or yarn</li>
-  <li>mySQL</li>
-  <li>Cypress</li>
-</ul>
+  Storages can be viewed at the storage list page. Clicking on a storage will list out the information of the storage on the right, as well as the products inside the storage.
+  </p>
+  
+<h3>Editing Storages</h3>
 <p>
-  Install Cypress to the project using '<code> npm install cypress --save-dev</code>'
-  Move the test file automated_tests.js to the cypress/integration.
-  Open Cypress after installed using '<code> npx cypress open</code>'
-  <p>The automated_test.js tests: </p>
-  <ul>
-   <li>the frontend webpage structure of the website</li>
-   <li>adding products</li>
-   <li>editing products</li>
-   <li>adding storages</li>
-   <li>editing storages</li>
-   <li>removing storages and products</li>
- </ul>
+  Storages can be edited by selecting them in the product list and clicking edit. In the edit page, the title, description, product list, and status of the storage can be edited. Note that editing the storage, the product list will be emptied. As such, the products need to be readded to the storage. The storage can also be deleted by selecting delete.
 </p>
-<h2>Authors</h2>
-<ul>
-  <li>Alvin Nguyen</li>
-  <li>Zachary Costa</li>
-  <li>Micheal Chu</li>
-  <li>Gricelda Tecun</li>
-  <li>Hunter Wright</li>
-</ul>
+
+<h3>Deleting Storages</h3>
+<p>
+  Storages can be deleted indiviually from the edit storage page, or from the deleted all button in the storage list.
+</p>
