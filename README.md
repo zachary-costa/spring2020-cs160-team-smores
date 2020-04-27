@@ -62,6 +62,9 @@ Using a command prompt:
 
 </p>
 
+<h2>File format</h2>
+The repo contains the frontend, backend, and database code used in the program.
+
 <h2>Automated Testing</h2>
 <p>Requires:</p>
 <ul>
