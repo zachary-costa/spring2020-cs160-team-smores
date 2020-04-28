@@ -63,7 +63,15 @@ Using a command prompt:
 </p>
 
 <h2>File format</h2>
-The repo contains the frontend, backend, and database code used in the program.
+<p>The repo contains the frontend, backend, and database code used in the program. </p>
+<h3>Front-end</h3>
+<p> The frontend code is located in the 'src' folder. </p>
+
+<h3>Back-end</h3>
+<p> The backend code is located in the 'server' folder and the server.js </p>
+
+<h3>Database</h3>
+<p> The database scripts can be found in the 'database' folder </p>
 
 <h2>Automated Testing</h2>
 <p>Requires:</p>
