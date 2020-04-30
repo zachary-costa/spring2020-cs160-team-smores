@@ -17,6 +17,8 @@ services:
 
   fb-app:
     image: foodbutler
+    stdin_open: true
+    tty: true
     build:
       context: ./
     volumes:

@@ -102,8 +102,8 @@ Using a command prompt:
 <ol>
   <li><code>git clone https://github.com/zachary-costa/spring2020-cs160-team-smores</code></li>
   <li><code>cd spring2020-cs160-team-smores</code></li>
-  <li><code>docker build --tag foodbutler:1.0 .</code></li>
-  <li><code>docker run --publish 8081:8081 --detach --name fb foodbutler:1.0</code></li>
+  <li><code>docker-compose build</code></li>
+  <li><code>docker-compose up -d</code></li>
 </ol>
 <h2>Authors</h2>
 <ul>
