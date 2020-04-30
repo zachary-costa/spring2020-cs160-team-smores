@@ -2,7 +2,7 @@
 # FoodButler Docker Image
 #
 
-FROM node:current-slim
+FROM node:latest
 
 WORKDIR /usr/src/foodbutler
 COPY package.json .

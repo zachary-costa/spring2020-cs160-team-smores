@@ -32,3 +32,7 @@ INSERT INTO storage_product(storage_id,product_id) VALUES
     (1,9),
     (1,10),
     (1,11);
+
+# Users
+INSERT INTO users(id,name,password) VALUES
+    (100,'computer','computes');
