@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+
+  fb-db:
+    image: mysql:latest
+    container_name: foodbutler-db
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - .:/database
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=pwddwp
+      - MYSQL_DATABASE=testdb
+    networks:
+      - fb-net
+
+  fb-app:
+    image: foodbutler
+    build:
+      context: ./
+    volumes:
+      - ./volumes
+    ports:
+      - "8081:8081"
+    depends_on:
+      - fb-db
+    restart: on-failure
+    networks:
+      - fb-net
+
+networks:
+  fb-net:
