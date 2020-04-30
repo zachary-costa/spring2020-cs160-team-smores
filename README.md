@@ -95,6 +95,16 @@ Using a command prompt:
    <li>removing storages and products</li>
  </ul>
 </p>
+<h2>Docker Build and Container</h2>
+<p>
+  Follow the instructions below to build a Docker image and deploy a container of FoodButler.
+</p>
+<ol>
+  <li><code>git clone https://github.com/zachary-costa/spring2020-cs160-team-smores</code></li>
+  <li><code>cd spring2020-cs160-team-smores</code></li>
+  <li><code>docker build --tag foodbutler:1.0 .</code></li>
+  <li><code>docker run --publish 8081:8081 --detach --name fb foodbutler:1.0</code></li>
+</ol>
 <h2>Authors</h2>
 <ul>
   <li>Alvin Nguyen</li>
